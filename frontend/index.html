@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク管理アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ログイン画面 -->
+        <div id="login-section" class="auth-section">
+            <div class="auth-container">
+                <h2>ログイン</h2>
+                <form id="login-form">
+                    <input type="text" id="login-username" placeholder="ユーザー名" required>
+                    <input type="password" id="login-password" placeholder="パスワード" required>
+                    <button type="submit">ログイン</button>
+                </form>
+                <p>アカウントをお持ちでない方は <a href="#" id="show-register">こちら</a></p>
+            </div>
+        </div>
+
+        <!-- 登録画面 -->
+        <div id="register-section" class="auth-section" style="display: none;">
+            <div class="auth-container">
+                <h2>ユーザー登録</h2>
+                <form id="register-form">
+                    <input type="text" id="register-username" placeholder="ユーザー名" required>
+                    <input type="email" id="register-email" placeholder="メールアドレス" required>
+                    <input type="password" id="register-password" placeholder="パスワード" required>
+                    <input type="password" id="register-password-confirm" placeholder="パスワード確認" required>
+                    <button type="submit">登録</button>
+                </form>
+                <p>既にアカウントをお持ちの方は <a href="#" id="show-login">こちら</a></p>
+            </div>
+        </div>
+
+        <!-- メイン画面 -->
+        <div id="main-section" style="display: none;">
+            <header>
+                <h1>タスク管理</h1>
+                <div class="user-info">
+                    <span id="username-display"></span>
+                    <button id="logout-btn">ログアウト</button>
+                </div>
+            </header>
+
+            <main>
+                <!-- タスク作成フォーム -->
+                <div class="task-form-container">
+                    <h3>新しいタスク</h3>
+                    <form id="task-form">
+                        <input type="text" id="task-title" placeholder="タスクタイトル" required>
+                        <textarea id="task-description" placeholder="説明（任意）"></textarea>
+                        <select id="task-priority">
+                            <option value="low">低</option>
+                            <option value="medium" selected>中</option>
+                            <option value="high">高</option>
+                        </select>
+                        <input type="datetime-local" id="task-due-date">
+                        <button type="submit">タスク追加</button>
+                    </form>
+                </div>
+
+                <!-- フィルタ -->
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">すべて</button>
+                    <button class="filter-btn" data-filter="pending">未完了</button>
+                    <button class="filter-btn" data-filter="completed">完了</button>
+                </div>
+
+                <!-- タスク一覧 -->
+                <div id="tasks-container">
+                    <div id="tasks-list"></div>
+                </div>
+
+                <!-- 統計 -->
+                <div id="statistics">
+                    <h3>統計</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-value" id="total-tasks">0</span>
+                            <span class="stat-label">総タスク数</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="completed-tasks">0</span>
+                            <span class="stat-label">完了</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="pending-tasks">0</span>
+                            <span class="stat-label">未完了</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="overdue-tasks">0</span>
+                            <span class="stat-label">期限切れ</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- メッセージ表示エリア -->
+    <div id="message-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
